@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="chapter06" namespace="/chapter06" extends="struts-default">
+		<action name="formTags_*" class="org.zxd.struts.chapter06.action.FormTagsAction" method="{1}">
+			<result>/views/chapter06/${viewName}.jsp</result>
+		</action>
+	</package>
+</struts>

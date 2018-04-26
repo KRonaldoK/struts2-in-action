@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="chapter04" namespace="/chapter04" extends="struts-default">
+		<action name="ognl_*" class="org.zxd.struts.chapter04.action.OgnlAction"
+			method="{1}">
+			<result>/views/chapter04/${viewName}.jsp</result>
+		</action>
+
+		<action name="type_*"
+			class="org.zxd.struts.chapter04.action.TypeConverterAction" method="{1}">
+			<result>/views/chapter04/converter/${viewName}.jsp</result>
+		</action>
+
+		<action name="converter_*" class="org.zxd.struts.chapter04.action.ConverterAction"
+			method="{1}">
+			<result>/views/chapter04/converter/${viewName}.jsp</result>
+		</action>
+	</package>
+</struts>

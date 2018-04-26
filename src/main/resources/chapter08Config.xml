@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="chapter08" namespace="/chapter08" extends="struts-default">
+		<action name="validate_*" class="org.zxd.struts.chapter08.action.ValidateAction" method="{1}">
+			<result>/views/chapter08/${viewName}.jsp</result>
+			<result name="input">/views/chapter08/validate.jsp</result>
+		</action>
+		
+		<action name="xmlValidate_*" class="org.zxd.struts.chapter08.action.XmlValidationAction" method="{1}">
+			<result>/views/chapter08/${viewName}.jsp</result>
+			<result name="input">/views/chapter08/xmlValidate.jsp</result>
+		</action>
+		
+		<action name="visitorXmlValidate_*" class="org.zxd.struts.chapter08.action.VisitorValidationAction" method="{1}">
+			<result>/views/chapter08/${viewName}.jsp</result>
+			<result name="input">/views/chapter08/visitorXmlValidate.jsp</result>
+		</action>
+		
+	</package>
+</struts>

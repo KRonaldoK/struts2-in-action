@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="chapter02" namespace="/chapter02" extends="struts-default">
+		
+		<action name="addUser" class="org.zxd.struts.chapter02.action.UserAction"
+			method="addUser">
+			<result>/views/chapter02/addUser.jsp</result>
+		</action>
+		
+		<action name="updateUser" class="org.zxd.struts.chapter02.action.UserAction"
+			method="updateUser">
+			<result>/views/chapter02/updateUser.jsp</result>
+		</action>
+		
+		<action name="deleteUser" class="org.zxd.struts.chapter02.action.UserAction"
+			method="deleteUser">
+			<result>/views/chapter02/deleteUser.jsp</result>
+		</action>
+
+		<action name="roleAction" class="org.zxd.struts.chapter02.action.RoleAction">
+			<result name="addRole">/views/chapter02/addRole.jsp</result>
+			
+			<result name="updateRole">/views/chapter02/updateRole.jsp</result>
+			
+			<result name="deleteRole">/views/chapter02/deleteRole.jsp</result>
+		</action>
+
+		<action name="wild_*_*" class="org.zxd.struts.chapter02.action.{1}Action"
+			method="{2}">
+			<result>/views/chapter02/{1}/{2}.jsp</result>
+		</action>
+
+		<action name="dataTransfer_*_*" class="org.zxd.struts.chapter02.action.dataTransfer.{1}Action"
+			method="{2}">
+			<param name="username">马云</param>
+			<param name="password">666</param>
+			<param name="token">123</param>
+			<param name="isActive">true</param>
+			<result name="success">/views/chapter02/dataTransfer/${viewName}.jsp</result>
+		</action>
+		
+	</package>
+</struts>

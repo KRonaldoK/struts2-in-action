@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="chapter03" namespace="/chapter03" extends="struts-default">
+		<interceptors>
+			<!-- 声明拦截器 -->
+			<interceptor name="authenticateInterceptor"
+				class="org.zxd.struts.chapter03.interceptor.AuthenticateInterceptor">
+				<param name="excludeMethods">login,logout</param>
+			</interceptor>
+			
+			<interceptor name="executionInterceptor"
+				class="org.zxd.struts.chapter03.interceptor.ExecutionInterceptor">
+				<param name="needLog">true</param>
+			</interceptor>
+
+			<!-- 声明拦截器栈 -->
+			<interceptor-stack name="strutsInActionStack">
+				<interceptor-ref name="authenticateInterceptor" />
+				<interceptor-ref name="defaultStack">
+					<param name="validation.excludeMethods">login,logout</param>
+				</interceptor-ref>
+				<!-- 将 executionInterceptor 放置在拦截器栈的底部，主要是为了只测量动作的执行时间，而排出拦截器栈的执行时间。 -->
+				<interceptor-ref name="executionInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 设置默认拦截器栈 -->
+		<default-interceptor-ref name="strutsInActionStack" />
+
+		<action name="interceptor_*"
+			class="org.zxd.struts.chapter03.action.InterceptorAction" method="{1}">
+			<!-- 将拦截器应用到动作中 -->
+			<interceptor-ref name="strutsInActionStack" />
+
+			<result name="login">/views/chapter03/interceptorLogin.jsp</result>
+
+			<result>/views/chapter03/${viewName}.jsp</result>
+		</action>
+
+	</package>
+</struts>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="chapter10" namespace="/chapter10" extends="struts-default">
+		<action name="others_*_*" class="org.zxd.struts.chapter10.action.{1}Action"
+			method="{2}">
+			<result>/views/chapter10/${viewName}.jsp</result>
+		</action>
+
+		<action name="download"
+			class="org.zxd.struts.chapter10.action.StrutsDownloadAction">
+			<param name="inputPath">/downloads/struts-2.5.5-all.7z</param>
+			<result name="success" type="stream">
+				<param name="contentType">multipart/form-data</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">filename="struts-2.5.5-all.7z"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

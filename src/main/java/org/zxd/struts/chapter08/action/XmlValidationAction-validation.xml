@@ -1,0 +1,103 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.2//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+
+	<!-- 1：非空校验器。 -->
+	<field name="vh.userId">
+		<field-validator type="required">
+			<message>用户 ID 必须输入</message>
+		</field-validator>
+	</field>
+
+	<!-- 2：长度校验器，minLength 指定最小长度，maxLength 指定最大长度。 -->
+	<field name="vh.password">
+		<field-validator type="requiredstring">
+			<message>用户密码必须输入</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">8</param>
+			<param name="maxLength">64</param>
+			<message>密码长度必须在 ${minLength} 和 ${maxLength} 之间，你的输入是：${vh.password}</message>
+		</field-validator>
+	</field>
+
+	<!-- 4：字段表达式校验器，表达式内容被解析为 Ognl 表达式 -->
+	<field name="vh.confirmPassword">
+		<field-validator type="requiredstring">
+			<message>确认密码必须输入</message>
+		</field-validator>
+		<field-validator type="fieldexpression">
+			<param name="expression">vh.confirmPassword eq vh.password</param>
+			<message>确认密码必须和 ${vh.password} 一致,你的输入是：${vh.confirmPassword}</message>
+		</field-validator>
+	</field>
+
+	<!-- 5：整数校验器，min 指定最小值，max 指定最大值。 -->
+	<field name="vh.age">
+		<field-validator type="required">
+			<message>用户年龄必须输入</message>
+		</field-validator>
+		<field-validator type="int">
+			<param name="min">1</param>
+			<param name="max">150</param>
+			<message>年龄必须在 ${min} 和 ${max} 之间，你的输入是：${vh.age}</message>
+		</field-validator>
+	</field>
+
+	<!-- 6：浮点数校验器，minInclusive 指定最小值（包含），maxExclusive 指定最大值（不包含） -->
+	<field name="vh.salary">
+		<field-validator type="required">
+			<message>用户薪资必须输入</message>
+		</field-validator>
+		<field-validator type="double">
+			<param name="minInclusive">10000</param>
+			<param name="maxExclusive">100000</param>
+			<message>薪资必须在 ${minInclusive} 和 ${maxExclusive}
+				之间，你的输入是：${vh.salary}</message>
+		</field-validator>
+	</field>
+
+	<!-- 7：日期范围校验器，min 指定最小日期，max 指定最大日期 -->
+	<field name="vh.birth">
+		<field-validator type="required">
+			<message>用户生日必须输入</message>
+		</field-validator>
+		<field-validator type="date">
+			<param name="min">1985-01-01</param>
+			<param name="max">1995-01-01</param>
+			<message>出生日期必须在 ${min} 和 ${max} 之间，你的输入是：${vh.birth}</message>
+		</field-validator>
+	</field>
+
+	<!-- 8：邮箱校验器，无参数。 -->
+	<field name="vh.email">
+		<field-validator type="requiredstring">
+			<message>用户邮箱必须输入</message>
+		</field-validator>
+		<field-validator type="email">
+			<message>邮箱格式不符合规范，你的输入是：${vh.email}</message>
+		</field-validator>
+	</field>
+
+	<!-- 9：URL 校验器，无参数。 -->
+	<field name="vh.webSite">
+		<field-validator type="requiredstring">
+			<message>用户网站必须输入</message>
+		</field-validator>
+		<field-validator type="url">
+			<message>个人网址格式不符合规范，你的输入是：${vh.webSite}</message>
+		</field-validator>
+	</field>
+
+	<!-- 10：正则校验器，根据 Struts 版本的不同，参数值可能为 expression 或 regex -->
+	<field name="vh.token">
+		<field-validator type="requiredstring">
+			<message>用户授权码必须输入</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="regex"><![CDATA[(^[a-zA-Z0-9]{8,}$)]]></param>
+			<message>授权码必须在大于 8 位，只能为数字和字母。</message>
+		</field-validator>
+	</field>
+
+</validators>
+

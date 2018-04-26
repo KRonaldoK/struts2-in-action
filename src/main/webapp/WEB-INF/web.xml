@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>Archetype Created Web Application</display-name>
+
+	<!-- 
+		配置 Struts2 的核心过滤器，来过滤指定的请求。 
+		StrutsPrepareAndExecuteFilter 实质上是一个过滤器，Web 容器在启动时会创建 StrutsPrepareAndExecuteFilter 类
+		的实例并调用 init 方法，读取并解析 src 路径下的 struts.xml 文件。struts 会将解析到的配置文件以 JavaBean 的形式
+		存储在内存中，这样，每次用户的请求到来就不需要重复解析配置文件，struts 会直接读取内存中的数据完成请求的处理。
+	 -->
+	<filter>
+		<filter-name>StrutsInAction</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>StrutsInAction</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>

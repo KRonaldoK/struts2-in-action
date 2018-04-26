@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- 
+		package：所有的 action 配置都必须放置在一个 package 中，package 的 name 属性用于区分不同的包，
+		namespace 属性会作为请求路径的一部分存在，extends 属性用于继承已经定义好的 package，
+		当 abstract 属性为 true 时，这个包只能用于定义可继承的组件，而不能定义动作。
+		action：action 节点用于配置一个动作，class 属性对应动作的处理类，
+		method 属性对应具体的处理方法。
+		result：result 节点的 type 属性指定结果集的类型，name 属性指定匹配的结果字符串名称，
+		result 节点之间的视图字符串用于对应目标资源页面。
+	-->
+	<package name="chapter01" namespace="/chapter01" extends="struts-default">
+		<action name="hello" class="org.zxd.struts.chapter01.action.HelloAction"
+			method="execute">
+			<result type="dispatcher" name="success">/views/chapter01/hello.jsp
+			</result>
+		</action>
+	</package>
+</struts>

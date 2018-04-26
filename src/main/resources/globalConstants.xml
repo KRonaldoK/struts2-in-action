@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- 1：开启 Struts2 的动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+	<!-- 2：开启 Ognl 的静态方法调用机制 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+
+	<!-- 3：指定全局资源文件，可以指定多个，按照顺序依次查找。 -->
+	<constant name="struts.custom.i18n.resources" value="MessageResources" />
+
+	<!-- 4：设置一次性上传文件的最大尺寸，单位字节。 -->
+	<constant name="struts.multipart.maxSize" value="102400000" />
+
+	<!-- 5：设置 WEB 应用的编码集，相当于调用 HttpServletRequest.setCharacterEncodint 方法或指定velocity 
+		或 freemarker 的输出编码格式。 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<!-- 6：设置 Struts2 的请求后缀，Struts2 只会处理指定后缀的请求，多个后缀之间用 ，隔开。 -->
+	<constant name="struts.action.extension" value="action,do,html" />
+
+	<!-- 7：设置 struts 的对象工厂，在和 Spring 整合是会用到。 -->
+	<constant name="struts.objectFactory" value="spring" />
+
+	<!-- 8：设置 action 的 name 属性允许出现 /,以支持 RESTFul 风格的请求路径，默认是不允许的。 -->
+	<constant name="struts.enable.SlashesInActionNames" value="true" />
+
+	<!-- 9：只能在开发模式下使用：设置当 struts2 的配置文件 struts.xml 发生变化时，是否重新加载配置。 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+
+	<!-- 10：只能在开发模式下使用：开启 Struts2 的调试模式，可以在浏览器端输出更详细的错误信息，方便查错。 -->
+	<constant name="struts.devMode" value="true" />
+
+	<!-- 11：只能在开发模式下使用：设置浏览器是否缓存静态内容。 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+	
+	<!-- 12：设置 struts 的默认主题风格，一般开发中都使用 simple，页面的样式通过 css 文件来设置。 -->
+	<constant name="struts.ui.theme" value="simple" />
+</struts>

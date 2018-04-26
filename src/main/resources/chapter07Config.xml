@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="chapter07" namespace="/chapter07" extends="struts-default">
+	
+		<result-types>
+			<result-type name="selfJson"
+				class="org.zxd.struts.chapter07.result.JsonResult" />
+		</result-types>
+		
+		<global-results>
+			<result name="internalError">/views/chapter07/globalResults/internalError.jsp</result>
+			<result name="unAuthorizedError">/views/chapter07/globalResults/unAuthorizedError.jsp</result>
+			<result name="unhandledError">/views/chapter07/globalResults/unhandledError.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="internalError" exception="org.zxd.struts.chapter07.exceptions.InternalException"/>
+			<exception-mapping result="unAuthorizedError" exception="org.zxd.struts.chapter07.exceptions.UnAuthorizedException"/>
+			<exception-mapping result="unhandledError" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+		
+		<action name="dispatcher" class="org.zxd.struts.chapter07.action.ResultAction"
+			method="dispatcher">
+			<result type="dispatcher">
+				<!-- dispatcher 结果类型有 2 个参数：location 和 parse。 location 参数指定了请求分发的 Servlet 
+					的路径。 parse 参数指定是否解析请求路径中的 Ognl 表达式，默认就是 true。 由于 location 参数是结果类型的默认参数，所以实际开发中可以省略 
+					param 标签。 -->
+				<param name="location">/views/chapter07/${viewName}.jsp</param>
+				<param name="parse">true</param>
+			</result>
+		</action>
+
+		<action name="relative" class="org.zxd.struts.chapter07.action.ResultAction"
+			method="relative">
+			<!-- 路径以 / 开头时，会自动添加上下文路径。 -->
+			<result type="redirect">/chapter07/dispatcher.action</result>
+		</action>
+
+		<action name="absolute" class="org.zxd.struts.chapter07.action.ResultAction"
+			method="absolute">
+			<result type="redirect">http://www.runoob.com/</result>
+		</action>
+
+		<action name="redirectAction" class="org.zxd.struts.chapter07.action.ResultAction"
+			method="redirectAction">
+			<result type="redirectAction">
+				<param name="actionName">dispatcher</param>
+				<param name="namespace">/chapter07</param>
+				<param name="method">dispatcher</param>
+				<param name="username">${username}</param>
+				<param name="age">${age}</param>
+				<param name="token">${token}</param>
+			</result>
+		</action>
+
+		<action name="velocity" class="org.zxd.struts.chapter07.action.ResultAction"
+			method="velocity">
+			<result type="velocity">/views/chapter07/velocity.vm</result>
+		</action>
+
+		<action name="freemarker" class="org.zxd.struts.chapter07.action.ResultAction"
+			method="freemarker">
+			<result type="freemarker">/views/chapter07/freemarker.ftl</result>
+		</action>
+		
+		<action name="selfJson" class="org.zxd.struts.chapter07.action.ResultAction"
+			method="json">
+			<result type="selfJson"/>
+		</action>
+		
+		<action name="exception_*" class="org.zxd.struts.chapter07.action.ExceptionAction"
+			method="{1}">
+			<result>/views/chapter07/success.jsp</result>
+		</action>
+		
+	</package>
+</struts>
